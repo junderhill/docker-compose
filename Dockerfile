@@ -1,4 +1,6 @@
-FROM docker:latest
-RUN set -ex && apk --no-cache add sudo
-RUN apk add --no-cache --update py-pip git openssh-client gcc python2-dev musl-dev libffi-dev openssl-dev make
-RUN pip install docker-compose
+FROM ubuntu:18.04
+RUN apt-get update
+RUN apt-get install -y curl openssh-client docker.io
+RUN curl -L "https://github.com/docker/compose/releases/download/1.23.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+RUN chmod +x /usr/local/bin/docker-compose
+
